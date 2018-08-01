@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+    <insert id="insertGoodsInfo">
+        <!--
+            #{} MyBatis使用预编译的形式编译这条SQL语句，编译后为？
+            #{name} 中的name为执行这条SQL语句的参数对象的属性名，MyBatis会根据这个name利用反射，
+                调用参数对象中的getName()方法为这个预编译的?进行赋值
+         -->
+        insert into t_goods_info (menu_id,number,name,picture,stock,drimecost,price,unit,hot,f_attribute_id,
+        s_attribute_id,region,sort,cas,other,seo_title,seo_keywords,seo_description,updated_at,created_at)
+        values(#menuId#,#number#,#name#,#picture#,#stock#,#drimecost#,#price#,#unit#,#hot#,#fAttributeId#,
+        #sAttributeId#,#region#,#sort#,#cas#,#other#,#seoTitle#,#seoKeywords#,#seoDescription#,now(),now())
+    </insert>
+
+
+    <insert id="insertGoodsChemAttributeInfo">
+        <!--
+            #{} MyBatis使用预编译的形式编译这条SQL语句，编译后为？
+            #{name} 中的name为执行这条SQL语句的参数对象的属性名，MyBatis会根据这个name利用反射，
+                调用参数对象中的getName()方法为这个预编译的?进行赋值
+         -->
+        insert into t_goods_chem_attribute_info (goods_id,spec,delivery,depot,merchant,molecular,accurate,chem_class_id,updated_at,created_at)
+        values(#{goods_id},#{spec},#{delivery},#{depot},#{merchant},#{molecular},#{accurate},#{chem_class_id},now(),now())
+    </insert>
+</sqlMap>
