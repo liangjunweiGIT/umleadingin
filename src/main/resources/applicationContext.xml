@@ -45,15 +45,13 @@
 
     <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="configLocation">
-            <value>ibatisConfig.xml</value>
-        </property>
+        <property name="configLocation" value="ibatisConfig.xml"/>
     </bean>
     <bean id="sqlMapClientTemplate" class="org.springframework.orm.ibatis.SqlMapClientTemplate">
-        <property name="sqlMapClient" ref="sqlMapClient"></property>
+        <property name="sqlMapClient" ref="sqlMapClient"/>
     </bean>
     <bean id="goodsInfoDao" class="com.ljw.dao.impl.GoodsInfoDaoImpl">
-        <property name="sqlMapClient" ref="sqlMapClient"></property>
+        <property name="sqlMapClient" ref="sqlMapClient"/>
     </bean>
 
     <!-- 配置哪些类的方法需要进行事务管理 -->

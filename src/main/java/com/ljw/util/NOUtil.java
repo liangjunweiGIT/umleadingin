@@ -17,10 +17,10 @@ public class NOUtil {
         if(hashCodeV < 0) {//有可能是负数
             hashCodeV = - hashCodeV;
         }
-        return getDateStr()+hashCodeV;
+        return ""+getDateStr().hashCode()+hashCodeV;
     }
 
     private static String getDateStr() {
-        return TimeUtil.format(new Date(), "yyMMdd");
+        return TimeUtil.format(new Date(), "yyMM");
     }
 }

@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.NumberUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,9 +43,10 @@ public class InsertGoodsServiceImpl implements InsertGoodsService{
             return 0;
         }
         for (int i = 1; i < dataList.size(); i++) {
+            List<Object> rowlist = dataList.get(i);
             System.out.print("正在解析第"+i+"条表格数据:");
-            for (int j = 0; j < dataList.get(i).size(); j++) {
-                System.out.print(dataList.get(i).get(j)+"  ");
+            for (Object aRowlist : rowlist) {
+                System.out.print(aRowlist + "  ");
             }
             System.out.println();
 
@@ -53,6 +55,11 @@ public class InsertGoodsServiceImpl implements InsertGoodsService{
             //TODO 跟随二级栏目号更改
             goodsInfo.setMenuId(4);//电化学实验类
             goodsInfo.setNumber(NOUtil.getNextGoodsChemAttributeNo());
+            goodsInfo.setName(rowlist.get(0)+"");
+            goodsInfo.setPicture(rowlist.get(1)+"");
+            if(rowlist.get(2)!=null){
+                goodsInfo.setStock((Integer) rowlist.get(2));
+            }
 
             //化学试剂
             GoodsChemAttributeInfo goodsChemAttributeInfo = new GoodsChemAttributeInfo();
