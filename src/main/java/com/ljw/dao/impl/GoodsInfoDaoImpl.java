@@ -1,19 +1,30 @@
 package com.ljw.dao.impl;
 
+import com.ljw.base.dao.BaseDao;
 import com.ljw.dao.GoodsInfoDao;
-import com.ljw.domain.GoodsChemAttributeInfo;
-import com.ljw.domain.GoodsInfo;
-import com.ljw.util.SqlUtil;
+import com.ljw.pojo.GoodsChemAttributeInfo;
+import com.ljw.pojo.GoodsInfo;
+import com.ljw.vo.ChemClassInfoVO;
+import org.springframework.stereotype.Repository;
 
-public class GoodsInfoDaoImpl implements GoodsInfoDao {
+import java.util.List;
+
+@Repository
+public class GoodsInfoDaoImpl extends BaseDao implements GoodsInfoDao {
 
 	@Override
-	public int insertGoodsChemAttributeInfo(GoodsInfo goodsInfo, GoodsChemAttributeInfo goodsChemAttributeInfo) {
-		try {
-			SqlUtil.getSqlMapClient().insert("insertGoodsInfo", goodsInfo);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return 1;
+	public Integer insertGoodsInfo(GoodsInfo goodsInfo) throws Exception {
+		return (Integer)getSqlMapClientTemplate().insert("insertGoodsInfo", goodsInfo);
 	}
+
+	@Override
+	public Integer insertGoodsChemAttributeInfo( GoodsChemAttributeInfo goodsChemAttributeInfo) throws Exception {
+		return (Integer)getSqlMapClientTemplate().insert("insertGoodsChemAttributeInfo", goodsChemAttributeInfo);
+	}
+
+	@Override
+	public List<ChemClassInfoVO> queryAllChemClassInfo() {
+		return getSqlMapClientTemplate().queryForList("queryAllChemClassInfo");
+	}
+
 }

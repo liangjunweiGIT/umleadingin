@@ -3,25 +3,47 @@
         "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap>
     <insert id="insertGoodsInfo">
-        <!--
-            #{} MyBatis使用预编译的形式编译这条SQL语句，编译后为？
-            #{name} 中的name为执行这条SQL语句的参数对象的属性名，MyBatis会根据这个name利用反射，
-                调用参数对象中的getName()方法为这个预编译的?进行赋值
-         -->
         insert into t_goods_info (menu_id,number,name,picture,stock,drimecost,price,unit,hot,f_attribute_id,
         s_attribute_id,region,sort,cas,other,seo_title,seo_keywords,seo_description,updated_at,created_at)
         values(#menuId#,#number#,#name#,#picture#,#stock#,#drimecost#,#price#,#unit#,#hot#,#fAttributeId#,
         #sAttributeId#,#region#,#sort#,#cas#,#other#,#seoTitle#,#seoKeywords#,#seoDescription#,now(),now())
+        <selectKey resultClass="int" keyProperty="id">
+            SELECT last_insert_id() as id;
+        </selectKey>
     </insert>
 
 
     <insert id="insertGoodsChemAttributeInfo">
-        <!--
-            #{} MyBatis使用预编译的形式编译这条SQL语句，编译后为？
-            #{name} 中的name为执行这条SQL语句的参数对象的属性名，MyBatis会根据这个name利用反射，
-                调用参数对象中的getName()方法为这个预编译的?进行赋值
-         -->
-        insert into t_goods_chem_attribute_info (goods_id,spec,delivery,depot,merchant,molecular,accurate,chem_class_id,updated_at,created_at)
-        values(#{goods_id},#{spec},#{delivery},#{depot},#{merchant},#{molecular},#{accurate},#{chem_class_id},now(),now())
+        insert into t_goods_chem_attribute_info
+        (goods_id,spec,delivery,depot,merchant,molecular,accurate,chem_class_id,updated_at,created_at)
+        values(#goodsId#,#spec#,#delivery#,#depot#,#merchant#,#molecular#,#accurate#,#chemClassId#,now(),now())
+        <selectKey resultClass="int" keyProperty="id">
+            SELECT last_insert_id() as id;
+        </selectKey>
     </insert>
+
+    <select id="queryAllChemClassInfo" resultClass="com.ljw.vo.ChemClassInfoVO">
+        SELECT
+        class.id AS id,
+        class.menu_id AS menuId,
+        class.name AS name,
+        class.sub_name AS subName,
+        class.english_name AS englishName,
+        class.picture AS picture,
+        class.cas AS cas,
+        class.molecule AS molecule,
+        class.hot AS hot,
+        class.sort AS sort,
+        class.f_attribute_ids AS fAttributeIds,
+        class.s_attribute_ids AS sAttributeIds,
+        class.seo_title AS seoTitle,
+        class.seo_keywords AS seoKeywords,
+        class.seo_description AS seoDescription,
+        class.updated_at AS updatedAt,
+        class.created_at AS createdAt,
+        class.deleted_at AS deletedAt,
+        menu.name AS menuName
+        FROM t_chem_class_info class
+        LEFT JOIN t_menu_info menu ON  menu.id = class.menu_id
+    </select>
 </sqlMap>

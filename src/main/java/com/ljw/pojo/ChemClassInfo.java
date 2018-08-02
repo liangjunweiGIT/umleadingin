@@ -1,28 +1,24 @@
-package com.ljw.domain;
+package com.ljw.pojo;
 
 import java.util.Date;
 
 /**
- * @Description 商品通用表
- * @Author Create by junwei.liang on 2018/8/1
+ * @Description:化学商品种类
+ * @Author Created by liangjunwei on 2018/8/2 17:39
  */
-public class GoodsInfo {
+public class ChemClassInfo {
     private Integer id;//编号
-    private Integer menuId;//二级栏目编号
-    private String number;//货号
+    private Integer menuId;//二级栏目编号（t_menu_info->id）
     private String name;//名称
-    private String picture;//图片地址
-    private Integer stock;//库存
-    private Integer drimecost;//原价（备用）
-    private Integer price;//售价
-    private String unit;//商品单位
+    private String subName;//中文别名
+    private String englishName;//英文名称
+    private String picture;//图片
+    private String cas;//CAS号
+    private String molecule;//分子式
     private Integer hot;//是否热销（0：否；1：是）
-    private Integer fAttributeId;//第一属性（品牌分类）编号（t_attribute_info->id）
-    private Integer sAttributeId;//第二属性（纯度）编号（t_attribute_info->id）
-    private String region;//地域
     private Integer sort;//排序（越大越靠前）
-    private String cas;//CAS
-    private String other;//自定义属性
+    private String fAttributeIds;//第一属性（品牌分类）编号集（t_attribute_info->id）
+    private String sAttributeIds;//第二属性（纯度）编号集（t_attribute_info->id）
     private String seoTitle;//网站SEO优化——标题
     private String seoKeywords;//网站SEO优化——关键字
     private String seoDescription;//网站SEO优化——描述
@@ -46,20 +42,28 @@ public class GoodsInfo {
         this.menuId = menuId;
     }
 
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSubName() {
+        return subName;
+    }
+
+    public void setSubName(String subName) {
+        this.subName = subName;
+    }
+
+    public String getEnglishName() {
+        return englishName;
+    }
+
+    public void setEnglishName(String englishName) {
+        this.englishName = englishName;
     }
 
     public String getPicture() {
@@ -70,36 +74,20 @@ public class GoodsInfo {
         this.picture = picture;
     }
 
-    public Integer getStock() {
-        return stock;
+    public String getCas() {
+        return cas;
     }
 
-    public void setStock(Integer stock) {
-        this.stock = stock;
+    public void setCas(String cas) {
+        this.cas = cas;
     }
 
-    public Integer getDrimecost() {
-        return drimecost;
+    public String getMolecule() {
+        return molecule;
     }
 
-    public void setDrimecost(Integer drimecost) {
-        this.drimecost = drimecost;
-    }
-
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
+    public void setMolecule(String molecule) {
+        this.molecule = molecule;
     }
 
     public Integer getHot() {
@@ -110,30 +98,6 @@ public class GoodsInfo {
         this.hot = hot;
     }
 
-    public Integer getfAttributeId() {
-        return fAttributeId;
-    }
-
-    public void setfAttributeId(Integer fAttributeId) {
-        this.fAttributeId = fAttributeId;
-    }
-
-    public Integer getsAttributeId() {
-        return sAttributeId;
-    }
-
-    public void setsAttributeId(Integer sAttributeId) {
-        this.sAttributeId = sAttributeId;
-    }
-
-    public String getRegion() {
-        return region;
-    }
-
-    public void setRegion(String region) {
-        this.region = region;
-    }
-
     public Integer getSort() {
         return sort;
     }
@@ -142,20 +106,20 @@ public class GoodsInfo {
         this.sort = sort;
     }
 
-    public String getCas() {
-        return cas;
+    public String getfAttributeIds() {
+        return fAttributeIds;
     }
 
-    public void setCas(String cas) {
-        this.cas = cas;
+    public void setfAttributeIds(String fAttributeIds) {
+        this.fAttributeIds = fAttributeIds;
     }
 
-    public String getOther() {
-        return other;
+    public String getsAttributeIds() {
+        return sAttributeIds;
     }
 
-    public void setOther(String other) {
-        this.other = other;
+    public void setsAttributeIds(String sAttributeIds) {
+        this.sAttributeIds = sAttributeIds;
     }
 
     public String getSeoTitle() {
@@ -206,4 +170,3 @@ public class GoodsInfo {
         this.deletedAt = deletedAt;
     }
 }
-
