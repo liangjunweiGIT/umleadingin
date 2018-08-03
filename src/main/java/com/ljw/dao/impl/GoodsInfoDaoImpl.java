@@ -2,6 +2,7 @@ package com.ljw.dao.impl;
 
 import com.ljw.base.dao.BaseDao;
 import com.ljw.dao.GoodsInfoDao;
+import com.ljw.pojo.ChemClassInfo;
 import com.ljw.pojo.GoodsChemAttributeInfo;
 import com.ljw.pojo.GoodsInfo;
 import com.ljw.vo.ChemClassInfoVO;
@@ -25,6 +26,11 @@ public class GoodsInfoDaoImpl extends BaseDao implements GoodsInfoDao {
 	@Override
 	public List<ChemClassInfoVO> queryAllChemClassInfo() {
 		return getSqlMapClientTemplate().queryForList("queryAllChemClassInfo");
+	}
+
+	@Override
+	public Integer insertChemClassInfo(ChemClassInfo chemClassInfo) throws Exception {
+		return (Integer)getSqlMapClientTemplate().insert("insertChemClassInfo", chemClassInfo);
 	}
 
 }

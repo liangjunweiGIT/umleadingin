@@ -15,6 +15,7 @@ public class ImportGoodsChemAttributeMain {
     public static void main(String[] args) throws IOException {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         InsertGoodsService service = context.getBean(InsertGoodsService.class);
+        //int i = service.insertGoodsChemAttributeInfo("F:/test.xlsx");
         int i = service.insertGoodsChemAttributeInfo("F:/test.xlsx");
     }
 

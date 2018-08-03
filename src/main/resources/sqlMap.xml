@@ -46,4 +46,15 @@
         FROM t_chem_class_info class
         LEFT JOIN t_menu_info menu ON  menu.id = class.menu_id
     </select>
+
+    <insert id="insertChemClassInfo" parameterClass="com.ljw.pojo.ChemClassInfo">
+        insert into t_chem_class_info
+        (menu_id,name,sub_name,english_name,picture,cas,molecule,hot,sort,f_attribute_ids,
+        s_attribute_ids,seo_title,seo_keywords,seo_description,updated_at,created_at)
+        values(#menuId#,#name#,#subName#,#englishName#,#picture#,#cas#,#molecule#,#hot#,#sort#,#fAttributeIds#,
+        #sAttributeIds#,#seoTitle#,#seoKeywords#,#seoDescription#,#updatedAt#,#createdAt#)
+        <selectKey resultClass="int" keyProperty="id">
+            SELECT last_insert_id() as id;
+        </selectKey>
+    </insert>
 </sqlMap>
