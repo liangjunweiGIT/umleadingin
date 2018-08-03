@@ -7,7 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.io.IOException;
 
 /**
- * @Description:导入
+ * @Description:导入化学试剂商品(二类)
  * @Author Created by liangjunwei on 2018/8/2 10:28
  */
 public class ImportGoodsChemAttributeMain {
